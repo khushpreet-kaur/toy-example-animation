@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>queue demo</title>
+  <style>
+  div {
+    margin: 3px;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    left: 0px;
+    top: 30px;
+    background: green;
+    display: none;
+  }
+  div.newcolor {
+    background: blue;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<!-- This example will be used in unary addition simulation to concatinare two divs
+ by moving them from left to right (first no) and from left to right. (Second number)
+exp: a=111, b=1111, c = a+b using animation(concatination)
+ -->
+
+Click here...
+<div></div>
+ 
+<script>
+//move div to left till 200 with green color and will change the color to blue
+//after completing
+$( document.body ).click(function() {
+  $( "div" )
+    .show( "slow" )
+    .animate({ left: "+=200" }, 2000 )
+    .queue(function() {
+      $( this ).addClass( "newcolor" );
+    })
+    .animate({ left: "-=200" }, 500 )
+    .queue(function() {
+      $( this ).removeClass( "newcolor" ).dequeue();
+    })
+    .slideUp();
+});
+//TODO:  Need to put my simulation's elements(both divs) to concatinate them for unary addition.
+</script>
+
+</body>
+</html>
